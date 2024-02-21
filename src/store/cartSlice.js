@@ -28,7 +28,14 @@ const cartSlice = createSlice({
   initialState,
   reducers: {
     add(state, action) {
-      state.push(action.payload);
+      const existingItem = state.find((item) => item.id === action.payload.id);
+      if (existingItem) {
+        // If item already exists, increment quantity
+        existingItem.qty++;
+      } else {
+        // Otherwise, push new item to the cart
+        state.push({ ...action.payload, qty: 1 });
+      }
     },
   },
   extraReducers: (builder) => {
@@ -46,7 +53,7 @@ const cartSlice = createSlice({
 });
 
 export const selectTotalPrice = (state) => {
-  return state.cart.reduce((total, item) => total + item.price, 0);
+  return state.cart.reduce((total, item) => total + item.price * item.qty, 0);
 };
 
 export const { add } = cartSlice.actions;

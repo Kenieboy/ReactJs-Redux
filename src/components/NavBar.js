@@ -7,6 +7,11 @@ function NavBar() {
   const cartProducts = useSelector((state) => state.cart);
   const totalPrice = useSelector(selectTotalPrice);
 
+  const totalQty = cartProducts.reduce(
+    (accumulator, currentValue) => accumulator + currentValue.qty,
+    0
+  );
+
   console.log(cartProducts);
   return (
     <div>
@@ -22,7 +27,7 @@ function NavBar() {
 
         <div>
           <Link to="/cart">Total Amount: ${totalPrice}</Link>
-          <Link to="/cart">Cart: {cartProducts.length}</Link>
+          <Link to="/cart">Cart: {totalQty}</Link>
         </div>
       </nav>
     </div>
