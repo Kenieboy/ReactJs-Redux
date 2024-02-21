@@ -5,7 +5,7 @@ import { selectTotalPrice } from "../store/cartSlice";
 
 function NavBar() {
   const cartProducts = useSelector((state) => state.cart);
-  const total = useSelector(selectTotalPrice);
+  const totalPrice = useSelector(selectTotalPrice);
 
   console.log(cartProducts);
   return (
@@ -21,7 +21,7 @@ function NavBar() {
         </div>
 
         <div>
-          <Link to="/cart">Total Amount: ${total}</Link>
+          <Link to="/cart">Total Amount: ${totalPrice}</Link>
           <Link to="/cart">Cart: {cartProducts.length}</Link>
         </div>
       </nav>

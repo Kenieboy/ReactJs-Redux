@@ -7,6 +7,14 @@ function Cart() {
   console.log(cartProducts);
   return (
     <div>
+      <button
+        onClick={() => {
+          localStorage.clear();
+          window.location.reload();
+        }}
+      >
+        Empty Cart
+      </button>
       <div>
         <h1>Cart</h1>
       </div>
